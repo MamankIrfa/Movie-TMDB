@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from 'react'
+import Banner from './components/Banner'
+import Header from './components/Header/Header'
+import MoviesList from './components/Movies/MoviesList'
+import Container from './layouts/Container'
+import Section from './layouts/Section'
+
+export const TitleContext = createContext()
+export const ToggleContext = createContext()
 
 function App() {
+  const [toggleType, setToggleType] = useState()
+  const ContextType = { toggleType, setToggleType }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Header />
+      <Container>
+        <Banner />
+        <TitleContext.Provider value={['Streaming', 'On Tv', 'For Rent', 'In Theatres']}>
+          <ToggleContext.Provider value={ContextType}>
+            <Section title="What's Popular">
+              <MoviesList />
+            </Section>
+          </ToggleContext.Provider>
+        </TitleContext.Provider>
+      </Container>
+    </>
+  )
 }
 
-export default App;
+export default App
