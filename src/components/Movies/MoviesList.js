@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MoviesCard from './MoviesCard'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMoviesPopular } from '../../features/movies/moviesSlice'
+import { getMoviesPopuler } from '../../features/movies/populerSlice'
 import { ToggleContext } from '../../App'
 import Blur from '../../base/Blur'
 
@@ -9,18 +9,17 @@ function MoviesList() {
   const [movies, setMovie] = useState([])
   const [typeMovies] = useState(['movie/popular', 'tv/popular', 'movie/upcoming', 'movie/now_playing'])
   const dispatch = useDispatch()
-  const { moviesPopular } = useSelector((state) => state.movies)
+  const { moviesPopuler } = useSelector((state) => state.moviesPopuler)
   const toggleType = useContext(ToggleContext)
 
+
   useEffect(() => {
-    dispatch(getMoviesPopular({ type: typeMovies[toggleType?.toggleType] || 'movie/popular' }))
+    dispatch(getMoviesPopuler({ type: typeMovies[toggleType?.toggleType] || 'movie/popular' }))
   }, [dispatch, typeMovies, toggleType])
 
   useEffect(() => {
-    setMovie(moviesPopular?.results)
-  }, [moviesPopular])
-
-  console.log(moviesPopular?.results)
+    setMovie(moviesPopuler?.results)
+  }, [moviesPopuler])
 
   return (
     <div className='flex pb-5 pl-5 pr-9 overflow-x-auto'>

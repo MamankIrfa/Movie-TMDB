@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { get } from '../../services/AxiosServices'
 
 const initialState = {
-  moviesPopular: [],
+  moviesPopuler: [],
   status: false
 }
 
-export const getMoviesPopular = createAsyncThunk('movies/popular', async ({ type, rejectWithValue }) => {
+export const getMoviesPopuler = createAsyncThunk('movies/popular', async ({ type, rejectWithValue }) => {
   try {
     const { data } = await get(`${type}`)
     return data
@@ -15,19 +15,19 @@ export const getMoviesPopular = createAsyncThunk('movies/popular', async ({ type
   }
 })
 
-export const moviesSlice = createSlice({
-  name: 'movies',
+export const populerSlice = createSlice({
+  name: 'populer',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getMoviesPopular.fulfilled, (state, action) => {
-        state.moviesPopular = action.payload
+      .addCase(getMoviesPopuler.fulfilled, (state, action) => {
+        state.moviesPopuler = action.payload
       })
-      .addCase(getMoviesPopular.rejected, (state) => {
+      .addCase(getMoviesPopuler.rejected, (state) => {
         state.status = true
       })
   }
 })
 
-export default moviesSlice.reducer
+export default populerSlice.reducer
