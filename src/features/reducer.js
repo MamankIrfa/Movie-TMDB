@@ -1,8 +1,6 @@
-import moviesPopuler from './movies/populerSlice'
-import moviesSearch from './movies/searchSlice'
+import movies from './movies/moviesSlice'
 const rootReducer = {
-  moviesPopuler,
-  moviesSearch
+  movies
 }
 
 export default rootReducer

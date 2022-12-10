@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import SearchButton from '../../base/Button/SearchButton'
 import SearchInput from '../../base/Input/SearchInput'
-import { getMoviesSearch } from '../../features/movies/searchSlice'
+import { getMoviesSearch } from '../../features/movies/moviesSlice'
 
 function Banner() {
   const SearchInputRef = useRef()
@@ -14,7 +14,7 @@ function Banner() {
   }
 
   const handleClick = () => {
-    dispatch(getMoviesSearch({ query: SearchInputRef.current.value }))
+    dispatch(getMoviesSearch(SearchInputRef.current.value))
   }
 
   return (
